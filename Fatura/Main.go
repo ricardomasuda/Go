@@ -14,6 +14,7 @@ func main() {
 
 	http.HandleFunc("/funcao", Model.Funcao)
 	http.HandleFunc("/login", Login.Login)
+	http.HandleFunc("/listar", Login.Fatura)
 
 	fmt.Println("Estou escutando, comandante...")
 	http.ListenAndServe(":8181", nil)

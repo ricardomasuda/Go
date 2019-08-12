@@ -12,8 +12,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	// logic part of log in
 	fmt.Println("username:", r.Form["Login"])
 	fmt.Println("password:", r.Form["Senha"])
-	if err := Model.Modelos.ExecuteTemplate(w, "login.html", nil); err != nil {
+	if err := Model.Login.ExecuteTemplate(w, "login.html", nil); err != nil {
 		http.Error(w, "Houve um erro na renderização da página.", http.StatusInternalServerError)
-		fmt.Println("[Ola] Erro na execucao do modelo: ", err.Error())
+		fmt.Println("[Login] Erro na execucao do modelo: ", err.Error())
 	}
 }
