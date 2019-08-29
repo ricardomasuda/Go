@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="layout/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="layout/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="layout/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="layout/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="layout/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="layout/dist/css/skins/_all-skins.min.css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="nav-tabs-custom">
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Cadastro de Fatura</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+                <form action="recebe_evento.php" method="post" enctype="multipart/form-data" name="cliente">
+                    <input type="hidden" name="tipocad" value="1">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Valor</label>
+                                    <input type="text" name="nome" class="form-control" id="exampleInput"
+                                           placeholder="Digite o Valor" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Categoria</label>
+                                    <input type="text" name="nome" class="form-control" id="exampleInput"
+                                           placeholder="Digite o Catagoria" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>Pago</label>
+                            <input type="checkbox" name="permissao[]"
+                                   value=""
+                                   class="minimal"
+                                   id="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button type="submit" class="btn btn-primary" style="    float: left;">
+                Cadastrar
+            </button>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+</body>
+</html>
