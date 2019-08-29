@@ -18,10 +18,10 @@ func main() {
 	//http.HandleFunc("/edit", Edit)
 
 	// Ações
-	//http.HandleFunc("/insert", Insert)
+	http.HandleFunc("/insert", Controler.Insert)
 	//http.HandleFunc("/update", Update)
 	//http.HandleFunc("/delete", Delete)
 
-	// Inicia o servidor na porta 9000
+	// Inicia o servidor na porta 9000/ link localhost:9000
 	http.ListenAndServe(":9000", nil)
 }
