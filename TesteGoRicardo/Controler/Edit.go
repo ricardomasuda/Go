@@ -4,15 +4,17 @@ import (
 	"TesteGoRicardo/DataBase"
 	"TesteGoRicardo/Model"
 	"net/http"
-	"text/template"
 )
 
-var tmpl = template.Must(template.ParseGlob("tmpl/*"))
-
-func Index(w http.ResponseWriter, r *http.Request) {
+// Função Edit, edita os dados
+func Edit(w http.ResponseWriter, r *http.Request) {
+	// Abre a conexão com banco de dados
 	db := DataBase.DbConn()
-	
-	selDB, err := db.Query("SELECT * FROM `names` ORDER BY `names`.`name` ASC")
+
+	// Pega o ID do parametro da URL
+	nId := r.URL.Query().Get("id")
+
+	selDB, err := db.Query("SELECT * FROM names WHERE id=?", nId)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -20,12 +22,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	// Monta a struct para ser utilizada no template
 	n := Model.Names{}
 
-	// Monta um array para guardar os valores da struct
-	res := []Model.Names{}
-
 	// Realiza a estrutura de repetição pegando todos os valores do banco
 	for selDB.Next() {
-		// Armazena os valores em variáveis
+		//Armazena os valores em variaveis
 		var id int
 		var name, email string
 
@@ -39,12 +38,11 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		n.Id = id
 		n.Name = name
 		n.Email = email
-
-		// Junta a Struct com Array de Struct
-		res = append(res, n)
 	}
 
-	tmpl.ExecuteTemplate(w, "Index",res )
+	// Mostra o template com formulário preenchido para edição
+	tmpl.ExecuteTemplate(w, "Edit", n)
+
+	// Fecha a conexão com o banco de dados
+	defer db.Close()
 }
-
-

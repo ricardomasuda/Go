@@ -13,14 +13,14 @@ func main() {
 
 	// Gerencia as URLs
 	http.HandleFunc("/", Controler.Index)
-	//http.HandleFunc("/show", Show)
-	//http.HandleFunc("/new", New)
-	//http.HandleFunc("/edit", Edit)
+	http.HandleFunc("/show", Controler.Show)
+	http.HandleFunc("/new", Controler.New)
+	http.HandleFunc("/edit", Controler.Edit)
 
 	// Ações
 	http.HandleFunc("/insert", Controler.Insert)
-	//http.HandleFunc("/update", Update)
-	//http.HandleFunc("/delete", Delete)
+	http.HandleFunc("/update", Controler.Update)
+	http.HandleFunc("/delete", Controler.Delete)
 
 	// Inicia o servidor na porta 9000/ link localhost:9000
 	http.ListenAndServe(":9000", nil)

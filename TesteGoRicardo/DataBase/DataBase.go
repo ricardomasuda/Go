@@ -1,6 +1,10 @@
 package DataBase
 
-import "database/sql"
+import (
+	"database/sql"
+	// Driver Mysql para Go
+	_ "github.com/go-sql-driver/mysql"
+	)
 
 func DbConn() (db *sql.DB) {
 	dbDriver := "mysql"
@@ -10,7 +14,8 @@ func DbConn() (db *sql.DB) {
 
 	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
 	if err != nil {
-		panic(err.Error())
+		panic("[DataBse] Erro de banco"+err.Error())
 	}
+	println("Conectado ao banco de dados")
 	return db
 }
