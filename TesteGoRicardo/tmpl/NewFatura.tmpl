@@ -1,0 +1,12 @@
+{{ define "NewFatura" }}
+  {{ template "Header" }}
+    {{ template "Menu" }} 
+   <h2>Nova fatura</h2>
+  
+    <form method="POST" action="insertFatura">
+      <label> Valor: </label><input type="text" name="valor" /><br />
+      <label> Categoria: </label><input type="text" name="categoria" /><br />
+      <input type="submit" value="Save user" />
+    </form>
+  {{ template "Footer" }}
+{{ end }}

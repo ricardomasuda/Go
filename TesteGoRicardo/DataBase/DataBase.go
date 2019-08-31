@@ -16,6 +16,5 @@ func DbConn() (db *sql.DB) {
 	if err != nil {
 		panic("[DataBse] Erro de banco"+err.Error())
 	}
-	println("Conectado ao banco de dados")
 	return db
 }
