@@ -25,8 +25,10 @@ func InsertFatura(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Insere valores do formulario com a SQL tratada e verifica errors
-		insForm.Exec(categoria, valor)
+		result , err := insForm.Exec(categoria, valor)
 
+
+		log.Println(result)
 		// Exibe um log com os valores digitados no formulário
 		log.Println("INSERT: Valor: " + valor + " | Categoria: " + categoria)
 	}

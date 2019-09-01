@@ -1,18 +1,14 @@
-package Controler
+package DAL
 
 import (
 	"TesteGoRicardo/DataBase"
 	"log"
-	"net/http"
+	"strconv"
 )
 
-func DeleteFatura(w http.ResponseWriter, r *http.Request) {
-
-	println("entrou em delete")
+func DeleteFatura(nId int) (bool){
 	// Abre conexão com banco de dados usando a função: dbConn()
 	db := DataBase.DbConn()
-
-	nId := r.URL.Query().Get("id")
 
 	// Prepara a SQL e verifica errors
 	delForm, err := db.Prepare("DELETE FROM fatura WHERE id_fatura=?")
@@ -21,14 +17,15 @@ func DeleteFatura(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insere valores do form com a SQL tratada e verifica errors
-	delForm.Exec(nId)
+	_,err= delForm.Exec(nId)
+	if err != nil {
+		return false
+	}
 
 	// Exibe um log com os valores digitados no form
-	log.Println("DELETE :"+nId)
+	log.Println("DELETE :"+strconv.Itoa(nId))
 
 	// Encerra a conexão do dbConn()
 	defer db.Close()
-
-	// Retorna a HOME
-	http.Redirect(w, r, "listFatura", 301)
+	return true
 }

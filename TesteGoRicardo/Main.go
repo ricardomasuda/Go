@@ -22,9 +22,9 @@ func main() {
 	// Ações
 	http.HandleFunc("/insert", Controler.Insert)
 	http.HandleFunc("/insertFatura", Controler.InsertFatura)
-	http.HandleFunc("/update", Controler.Update)
+	http.HandleFunc("/update", Controler.UpdateUser)
 	http.HandleFunc("/updateFatura", Controler.UpdateFatura)
-	http.HandleFunc("/delete", Controler.Delete)
+	http.HandleFunc("/delete", Controler.DeleteUser)
 	http.HandleFunc("/deleteFatura", Controler.DeleteFatura)
 
 	// Inicia o servidor na porta 9000/ link localhost:9000
