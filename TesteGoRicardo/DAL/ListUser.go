@@ -5,7 +5,7 @@ import (
 	"TesteGoRicardo/Model"
 )
 
-func ListUser(){
+func ListUser() []Model.Names {
 	db := DataBase.DbConn()
 
 	selDB, err := db.Query("SELECT * FROM `names` ORDER BY `names`.`name` ASC")
@@ -39,5 +39,5 @@ func ListUser(){
 		// Junta a Struct com Array de Struct
 		res = append(res, n)
 	}
-
+	return res
 }

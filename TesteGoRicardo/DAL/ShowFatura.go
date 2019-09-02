@@ -1,48 +1,43 @@
-package Controler
+package DAL
 
 import (
 	"TesteGoRicardo/DataBase"
 	"TesteGoRicardo/Model"
-	"net/http"
 )
 
-func Show(w http.ResponseWriter, r *http.Request) {
+func ShowFatura(nId int) Model.Fatura {
+
+	//abre conexão
 	db := DataBase.DbConn()
 
-	// Pega o ID do parametro da URL
-	nId := r.URL.Query().Get("id")
-
 	// Usa o ID para fazer a consulta e tratar erros
-	selDB, err := db.Query("SELECT * FROM names WHERE id=?", nId)
+	selDB, err := db.Query("SELECT * FROM `fatura` WHERE `id_fatura`=?", nId)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	// Monta a strcut para ser utilizada no template
-	n := Model.Names{}
+	n := Model.Fatura{}
 
 	// Realiza a estrutura de repetição pegando todos os valores do banco
 	for selDB.Next() {
 		// Armazena os valores em variaveis
-		var id int
-		var name, email string
+		var id_fatura , valor int
+		var categoria string
 
 		// Faz o Scan do SELECT
-		err = selDB.Scan(&id, &name, &email)
+		err = selDB.Scan(&id_fatura, &valor, &categoria)
 		if err != nil {
 			panic(err.Error())
 		}
 
 		// Envia os resultados para a struct
-		n.Id = id
-		n.Name = name
-		n.Email = email
+		n.IdFatura = id_fatura
+		n.Categoria = categoria
+		n.Valor = valor
 	}
-
-	// Mostra o template
-	tmpl.ExecuteTemplate(w, "Show", n)
-
 	// Fecha a conexão
 	defer db.Close()
 
+	return n
 }

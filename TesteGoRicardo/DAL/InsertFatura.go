@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func insertUser(valor int, categoria string)(bool) {
+func InsertFatura(valor int, categoria string) bool {
 	db := DataBase.DbConn()
 
 	// Prepara a SQL e verifica errors

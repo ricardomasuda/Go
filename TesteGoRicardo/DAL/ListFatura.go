@@ -5,13 +5,13 @@ import (
 	"TesteGoRicardo/Model"
 )
 
-func ListFatura() {
+func ListFatura()  []Model.Fatura {
 
 	db := DataBase.DbConn()
 
 	selDB, err := db.Query("SELECT * FROM `fatura` WHERE 1")
 	if err != nil {
-		panic("[ShowFatura]Erro ao buscar informações no banco"+err.Error())
+		panic("[ListFatura]Erro ao buscar informações no banco"+err.Error())
 	}
 
 	// Monta a struct para ser utilizada no template
@@ -27,9 +27,9 @@ func ListFatura() {
 		var categoria string
 
 		// Faz o Scan do SELECT
-		err = selDB.Scan(&idFatura, &categoria, &valor)
+		err = selDB.Scan(&idFatura, &valor, &categoria)
 		if err != nil {
-			panic("[ShowFatura]Erro ao fazer o Scan do SELECT"+err.Error())
+			panic("[ListFatura]Erro ao fazer o Scan do SELECT"+err.Error())
 		}
 
 		// Envia os resultados para a struct
@@ -40,5 +40,5 @@ func ListFatura() {
 		// Junta a Struct com Array de Struct Fatura
 		res = append(res, n)
 	}
-
+	return res
 }

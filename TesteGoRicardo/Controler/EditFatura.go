@@ -45,3 +45,4 @@ func EditFatura(w http.ResponseWriter, r *http.Request) {
 	// Fecha a conexão com o banco de dados
 	defer db.Close()
 }
+
