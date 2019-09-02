@@ -8,6 +8,17 @@ import (
 	"strconv"
 )
 
+func EditFatura(w http.ResponseWriter, r *http.Request) {
+	// Pega o ID do parametro da URL e  converte pra int
+	nId,_ := strconv.Atoi(r.URL.Query().Get("id"))
+	// Monta a struct para ser utilizada no template
+	n := Model.Fatura{}
+	//Busca a fatura no banco
+	n = DAL.ShowFatura(nId)
+	// Mostra o template com formulário preenchido para edição de fatura
+	tmpl.ExecuteTemplate(w, "EditFatura", n)
+
+}
 
 func ShowFatura(w http.ResponseWriter, r *http.Request) {
 	// Pega o ID do parametro da URL
@@ -31,6 +42,8 @@ func InsertFatura(w http.ResponseWriter, r *http.Request) {
 		// Pega os campos do formulário
 		valor,_ := strconv.Atoi(r.FormValue("valor"))
 		categoria := r.FormValue("categoria")
+		status := r.FormValue("status")
+		log.Print("---"+status+"---")
 
 		DAL.InsertFatura(valor,categoria)
 	}

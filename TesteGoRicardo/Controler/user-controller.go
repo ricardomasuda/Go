@@ -11,7 +11,17 @@ import (
 
 var tmpl = template.Must(template.ParseGlob("tmpl/*"))
 
-
+// Função Edit, edita os dados
+func Edit(w http.ResponseWriter, r *http.Request) {
+	// Pega o ID do parametro da URL e converte pra int
+	nId,_ := strconv.Atoi(r.URL.Query().Get("id"))
+	// Monta a struct para ser utilizada no template
+	n := Model.Names{}
+	//Busca o user no banco
+	n=DAL.ShowUser(nId)
+	// Mostra o template com formulário preenchido para edição
+	tmpl.ExecuteTemplate(w, "Edit", n)
+}
 
 func Show(w http.ResponseWriter, r *http.Request) {
 	// Pega o ID do parametro da URL

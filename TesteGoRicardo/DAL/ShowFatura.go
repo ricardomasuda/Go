@@ -23,10 +23,10 @@ func ShowFatura(nId int) Model.Fatura {
 	for selDB.Next() {
 		// Armazena os valores em variaveis
 		var id_fatura , valor int
-		var categoria string
+		var categoria ,status string
 
 		// Faz o Scan do SELECT
-		err = selDB.Scan(&id_fatura, &valor, &categoria)
+		err = selDB.Scan(&id_fatura, &categoria,&valor,&status)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -35,6 +35,7 @@ func ShowFatura(nId int) Model.Fatura {
 		n.IdFatura = id_fatura
 		n.Categoria = categoria
 		n.Valor = valor
+		n.Status = status
 	}
 	// Fecha a conexão
 	defer db.Close()

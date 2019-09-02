@@ -6,6 +6,10 @@
     <form method="POST" action="insertFatura">
       <label> Valor: </label><input type="text" name="valor" /><br />
       <label> Categoria: </label><input type="text" name="categoria" /><br />
+      <select name="status">
+              <option value="Pago">Pago</option>
+              <option value="Pendente" selected>Pendente</option>
+        </select>
       <input type="submit" value="Save user" />
     </form>
   {{ template "Footer" }}

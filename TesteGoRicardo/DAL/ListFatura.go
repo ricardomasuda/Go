@@ -24,12 +24,13 @@ func ListFatura()  []Model.Fatura {
 	for selDB.Next() {
 		// Armazena os valores em variáveis
 		var idFatura,valor int
-		var categoria string
+		var categoria,status string
+
 
 		// Faz o Scan do SELECT
-		err = selDB.Scan(&idFatura, &valor, &categoria)
+		err = selDB.Scan(&idFatura, &categoria, &valor,&status)
 		if err != nil {
-			panic("[ListFatura]Erro ao fazer o Scan do SELECT"+err.Error())
+			panic("[ListFatura]Erro ao fazer o Scan do SELECT"+ err.Error())
 		}
 
 		// Envia os resultados para a struct
