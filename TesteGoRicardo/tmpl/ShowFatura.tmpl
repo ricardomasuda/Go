@@ -4,8 +4,9 @@
 
 
     <h2> Registro {{ .IdFatura }} </h2>
-      <p>Nome: {{ .Valor }}</p>
-      <p>E-Mail:  {{ .Categoria }}</p>
-      <br /> <a href="/editFatura?id={{ .IdFatura }}">Editar</a></p><a href="/deleteFatura?id={{ .IdFatura }}">Deletar</a>
+      <p>Valor: {{ .Valor }}</p>
+      <p>Categoria:  {{ .Categoria }}</p>
+      <p>Status:  {{ .Status }}</p>
+      <br/> <a href="/editFatura?id={{ .IdFatura }}">Editar</a></p><a href="/deleteFatura?id={{ .IdFatura }}">Deletar</a>
   {{ template "Footer" }}
 {{ end }}

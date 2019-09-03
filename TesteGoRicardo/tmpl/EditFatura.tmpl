@@ -5,14 +5,15 @@
 
         <form method="POST" action="updateFatura">
             <input type="hidden" name="uid" value="{{ .IdFatura }}" />
-            <label> Valor:  </label><input type="text" name="valor" value="{{ .Valor }}" /><br />
-            <label> Categoria: </label><input type="text" name="categoria" value="{{ .Categoria }}" /><br />
+            <label> Valor:  </label><input type="text" name="valor" value="{{ .Valor }}" /><br/>
+            <label> Categoria: </label><input type="text" name="categoria" value="{{ .Categoria }}" /><br/>
              <select name="status" value="Pago">
-                  <option value="Pago">Pago</option>
-                  <option value="Pendente" selected>Pendente</option>
+                  <option {{ if eq .Status "Pago" }} selected="selected"{{ end }} value="Pago">Pago</option>
+                  <option {{ if eq .Status "Pendente" }} selected="selected"{{ end }}value="Pendente" >Pendente</option>
             </select>
+            <br/><br/>
             <input type="submit" value="Salvar Fatura" />
-        </form><br />
+        </form><br/>
         <a href="/deleteFatura?id={{ .IdFatura }}">Deletar</a>
     {{ template "Footer"}}
 {{ end }}

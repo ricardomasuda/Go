@@ -43,9 +43,8 @@ func InsertFatura(w http.ResponseWriter, r *http.Request) {
 		valor,_ := strconv.Atoi(r.FormValue("valor"))
 		categoria := r.FormValue("categoria")
 		status := r.FormValue("status")
-		log.Print("---"+status+"---")
-
-		DAL.InsertFatura(valor,categoria)
+		//Inseri a Fatura no banco
+		DAL.InsertFatura(valor,categoria,status)
 	}
 	//Retorna a Lista de faturas
 	http.Redirect(w, r, "listFatura", 301)

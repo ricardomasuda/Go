@@ -5,10 +5,10 @@
 
         <form method="POST" action="update">
             <input type="hidden" name="uid" value="{{ .Id }}" />
-            <label> Nome </label><input type="text" name="name" value="{{ .Name }}" /><br />
-            <label> E-mail </label><input type="text" name="email" value="{{ .Email }}" /><br />
+            <label> Nome </label><input type="text" name="name" value="{{ .Name }}" /><br/>
+            <label> E-mail </label><input type="text" name="email" value="{{ .Email }}" /><br/>
             <input type="submit" value="Salvar Usuario" />
-        </form><br />
+        </form><br/>
         <a href="/delete?id={{ .Id }}">Deletar</a>
     {{ template "Footer"}}
 {{ end }}

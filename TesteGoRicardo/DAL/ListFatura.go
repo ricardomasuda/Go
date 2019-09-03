@@ -37,6 +37,7 @@ func ListFatura()  []Model.Fatura {
 		n.IdFatura = idFatura
 		n.Categoria = categoria
 		n.Valor = valor
+		n.Status = status
 
 		// Junta a Struct com Array de Struct Fatura
 		res = append(res, n)
