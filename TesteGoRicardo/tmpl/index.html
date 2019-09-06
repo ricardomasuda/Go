@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../layout/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../layout/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../layout/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../layout/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../layout/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../layout/dist/css/skins/_all-skins.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../layout/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet"
+          href="../layout/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../layout/plugins/iCheck/all.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet"
+          href="../layout/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="../layout/plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../layout/bower_components/select2/dist/css/select2.min.css">
+
+    <link rel="stylesheet" href="../layout/dist/css/skins/_all-skins.min.css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        {{ template "Menu.html" }}
+    </header>
+
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">List</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <a href="/newUser">
+                                <button class="btn btn-primary" style="float: left;">Cadastrar User</button>
+                            </a>
+                            </br>
+                            </br>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th width="15%">Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{ range . }}
+                                    <tr>
+                                        <td>{{ .Id }}</td>
+                                        <td>{{ .Name }}</td>
+                                        <td>{{ .Email }}</td>
+                                        <td><a href="/show?id={{ .Id }}">Visualizar</a>  |  <a href="/edit?id={{ .Id }}">Editar</a></td>
+                                    </tr>
+                                {{ end }}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th style="width: 10px">ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th width="15%">Ação</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Versão</b> 1.0
+        </div>
+    </footer>
+</div>
+<!-- DataTables -->
+<script src="../layout/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../layout/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+</body>
+</html>

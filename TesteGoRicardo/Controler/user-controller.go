@@ -20,7 +20,8 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	//Busca o user no banco
 	n=DAL.ShowUser(nId)
 	// Mostra o template com formulário preenchido para edição
-	tmpl.ExecuteTemplate(w, "Edit", n)
+	t,_ := template.ParseFiles("tmpl/EditUser.html","tmpl/Menu.html","tmpl/header.html")
+	_ = t.Execute(w, n)
 }
 
 func Show(w http.ResponseWriter, r *http.Request) {
@@ -30,14 +31,16 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	n := Model.Names{}
 	n = DAL.ShowUser(nId)
 	// Mostra o template
-	tmpl.ExecuteTemplate(w, "Show", n)
+	t,_ := template.ParseFiles("tmpl/ShowUser.html","tmpl/Menu.html","tmpl/header.html")
+	_ = t.Execute(w, n)
 
 }
 
 
 // Função New apenas exibe o formulário para inserir novos dados
 func New(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "New", nil)
+	t,_ := template.ParseFiles("tmpl/NewUser.html","tmpl/Menu.html","tmpl/header.html")
+	_ = t.Execute(w, nil)
 }
 
 
@@ -58,8 +61,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	res := []Model.Names{}
 	//Busca no banco todos os Users
 	res= DAL.ListUser()
-
-	tmpl.ExecuteTemplate(w, "Index",res )
+	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html")
+	_ = t.Execute(w, res)
 }
 
 
@@ -81,18 +84,16 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	// Verifica o METHOD do formulário passado
 	if r.Method == "POST" {
-
 		// Pega os campos do formulário
 		name := r.FormValue("name")
 		email := r.FormValue("email")
 		id ,_ := strconv.Atoi(r.FormValue("uid"))
-
 		//insert User
 		DAL.UpdateUser(name, email , id);
-
 		// Exibe um log com os valores digitados no formulario
 		log.Println("UPDATE: Name: " + name + " |E-mail: " + email)
 	}
 	// Retorna a HOME
-	http.Redirect(w, r, "/", 301)
+	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html")
+	_ = t.Execute(w, nil)
 }
