@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func InsertFatura(valor int, categoria string , status string) bool {
+func InsertFatura(valor int, categoria string , status string) int {
 	db := DataBase.DbConn()
 
 	// Prepara a SQL e verifica errors
@@ -16,16 +16,16 @@ func InsertFatura(valor int, categoria string , status string) bool {
 	}
 
 	// Insere valores do formulario com a SQL tratada e verifica errors
-	_,err=insForm.Exec(categoria, valor,status)
+	id,err :=insForm.Exec(categoria, valor,status)
 	if err != nil {
-		return false
+		return 0
 	}
 
+	LastInsertId, err := id.LastInsertId()
 	// Exibe um log com os valores digitados no formulário
-	log.Println("INSERT: Valor: " + strconv.Itoa(valor) + " | Categoria: " + categoria)
-
+	log.Println("INSERT: ID " + strconv.FormatInt(LastInsertId, 10) + " Valor: " + strconv.Itoa(valor) + " | Categoria: " + categoria)
 	// Encerra a conexão do dbConn()
 	defer db.Close()
-	return true
+	return int(LastInsertId)
 
 }

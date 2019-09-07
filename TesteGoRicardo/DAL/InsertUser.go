@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-func InsertUser(name string , email string )(bool) {
+func InsertUser(name string , email string ) int {
 
 	//Abre a conexão com banco de dados usando a função: dbConn()
 	db := DataBase.DbConn()
@@ -17,15 +17,16 @@ func InsertUser(name string , email string )(bool) {
 	}
 
 	// Insere valores do formulario com a SQL tratada e verifica errors
-	_,err=insForm.Exec(name, email)
+//"SELECT * FROM `names` ORDER BY `names`.`id`  DESC  LIMIT 1"
+	id ,err :=insForm.Exec(name, email)
 	if err != nil {
-		return false
+		return 0
 	}
-
+	LastInsertId, err := id.LastInsertId()
 	// Exibe um log com os valores digitados no formulário
 	log.Println("INSERT: Name: " + name + " | E-mail: " + email)
 
 	// Encerra a conexão do dbConn()
 	defer db.Close()
-	return true
+	return int(LastInsertId)
 }
