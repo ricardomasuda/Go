@@ -5,36 +5,24 @@ import (
 	"TesteGoRicardo/Model"
 )
 
-/*
-4 fases de teste*/
-
-func testeShow() bool{
-
+func Deleteteste() bool{
 	var check bool
+	//1 setup exemplo : Criar e salvar  usuario fake no banco
 	name := "RICARDO"
 	email:= "mricardo1611@gmail.com"
-	//1 setup exemplo : Criar e salvar  usuario fake no banco
 	id:=DAL.InsertUser(name , email)
-	user:=Model.Names{}
 
 	//2 exercise exemplo : Chamar o controller
-	user=DAL.ShowUser(id)
+	DAL.DeletarUser(id)
 
 	//3 verify : checa se o retorno é o esperado
-	if user.Id == id {
-		check = true
-	} else {
+	user:=Model.Names{}
+	user=DAL.ShowUser(id)
+	if  user.Id ==id  {
 		check = false
 	}
 
 	//4 teardown : limpa os dados fakes
-	DAL.DeletarUser(id)
-
-	//retorna o dado do teste
+	//nao precisa
 	return  check
 }
-/*
-
-
-4 teardown : limpa os dados fakes
-*/
