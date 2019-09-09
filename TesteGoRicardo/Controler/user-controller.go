@@ -20,7 +20,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	//Busca o user no banco
 	n=DAL.ShowUser(nId)
 	// Mostra o template com formulário preenchido para edição
-	t,_ := template.ParseFiles("tmpl/EditUser.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/EditUser.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, n)
 }
 
@@ -31,7 +31,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	n := Model.Names{}
 	n = DAL.ShowUser(nId)
 	// Mostra o template
-	t,_ := template.ParseFiles("tmpl/ShowUser.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/ShowUser.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, n)
 
 }
@@ -39,7 +39,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 
 // Função New apenas exibe o formulário para inserir novos dados
 func New(w http.ResponseWriter, r *http.Request) {
-	t,_ := template.ParseFiles("tmpl/NewUser.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/NewUser.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, nil)
 }
 
@@ -61,7 +61,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	res := []Model.Names{}
 	//Busca no banco todos os Users
 	res= DAL.ListUser()
-	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, res)
 }
 
@@ -94,6 +94,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		log.Println("UPDATE: Name: " + name + " |E-mail: " + email)
 	}
 	// Retorna a HOME
-	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/index.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, nil)
 }

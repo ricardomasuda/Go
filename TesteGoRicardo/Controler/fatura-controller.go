@@ -18,7 +18,7 @@ func EditFatura(w http.ResponseWriter, r *http.Request) {
 	n := Model.Fatura{}
 	//Busca a fatura no banco
 	n = DAL.ShowFatura(nId)
-	t,_ := template.ParseFiles("tmpl/EditFatura.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/EditFatura.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, n)
 
 }
@@ -31,13 +31,13 @@ func ShowFatura(w http.ResponseWriter, r *http.Request) {
 
 	n=DAL.ShowFatura(nId)
 	// Mostra o template
-	t,_ := template.ParseFiles("tmpl/ShowFatura.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/ShowFatura.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, n)
 }
 
 // Função New apenas exibe o formulário para inserir novos dados
 func NewFatura(w http.ResponseWriter, r *http.Request) {
-	t,_ := template.ParseFiles("tmpl/NewFatura.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/NewFatura.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, nil)
 }
 
@@ -62,7 +62,7 @@ func ListFatura(w http.ResponseWriter, r *http.Request) {
 	//Busca no banco todas as faturas
 	res=DAL.ListFatura()
 
-	t,_ := template.ParseFiles("tmpl/ListFatura.html","tmpl/Menu.html","tmpl/header.html")
+	t,_ := template.ParseFiles("tmpl/ListFatura.html","tmpl/Menu.html","tmpl/header.html","tmpl/headlink.html")
 	_ = t.Execute(w, res)
 }
 
