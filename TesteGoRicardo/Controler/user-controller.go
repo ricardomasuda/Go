@@ -9,7 +9,7 @@ import (
 	"text/template"
 )
 
-var tmpl = template.Must(template.ParseGlob("tmpl/*"))
+//var tmpl = template.Must(template.ParseGlob("tmpl/*"))
 
 // Função Edit, edita os dados
 func Edit(w http.ResponseWriter, r *http.Request) {

@@ -3,9 +3,10 @@ package Controllers
 import (
 	"TesteGoRicardo/DAL"
 	"TesteGoRicardo/Model"
+	"testing"
 )
 
-func testeInsert() bool{
+func testeInsert(t *testing.T) bool{
 
 	var check bool
 	name := "RICARDO"
@@ -22,7 +23,7 @@ func testeInsert() bool{
 	if n.Email == email && n.Name == name {
 		check = true
 	} else {
-		check = false
+		t.Errorf("Não foi possivel inserir")
 	}
 
 	//4 teardown : limpa os dados fakes

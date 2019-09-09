@@ -3,33 +3,39 @@ package Controllers
 import (
 	"TesteGoRicardo/DAL"
 	"TesteGoRicardo/Model"
+	"testing"
 )
 
-func testeUpdate() bool{
+/*
+4 fases de teste*/
+
+func testeShow(t *testing.T) bool{
 
 	var check bool
 	name := "RICARDO"
 	email:= "mricardo1611@gmail.com"
 	//1 setup exemplo : Criar e salvar  usuario fake no banco
 	id:=DAL.InsertUser(name , email)
-
+	user:=Model.Names{}
 
 	//2 exercise exemplo : Chamar o controller
-	name = "RICARDO MASUDA"
-	email= "m-ricardo1611@hotmail.com"
-	_=DAL.UpdateUser(name,email, id);
+	user=DAL.ShowUser(id)
 
 	//3 verify : checa se o retorno é o esperado
-	user:=Model.Names{}
-	user = DAL.ShowUser(id)
-	if user.Name == name && user.Email == email {
+	if user.Id == id {
 		check = true
 	} else {
-		check = false
+		t.Errorf("Não foi possivel inserir")
 	}
+
 	//4 teardown : limpa os dados fakes
 	DAL.DeletarUser(id)
 
 	//retorna o dado do teste
 	return  check
 }
+/*
+
+
+4 teardown : limpa os dados fakes
+*/
